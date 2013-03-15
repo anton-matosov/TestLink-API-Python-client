@@ -19,7 +19,7 @@
 
 from testlinkapi import TestlinkAPIClient, TestLinkHelper
 from testlinkerrors import TestLinkError
-from datetime import date
+from datetime import date, datetime
 
 
 class TestLink(TestlinkAPIClient):
@@ -105,13 +105,13 @@ class TestLink(TestlinkAPIClient):
 
         if testNotes == "":
             # Builds testNotes if empty
-            today = date.today()
+            today = datetime.today()
             testNotes = "%s - Test performed automatically" % today.strftime("%c")
+            print "testNotes: %s" % testNotes
         elif testNotes == " ":
             #No notes
             testNotes = ""
 
-        print "testNotes: %s" % testNotes
         # Now report results
         results = self.reportTCResult(caseId, planId, kwargs["buildName"], testResult, testNotes)
         # Check errors
