@@ -386,7 +386,7 @@ class TestlinkAPIClient(object):
         self.stepsList = []                    
         return ret 
 
-    def reportTCResult(self, testcaseid, testplanid, buildname, status, notes ):
+    def reportTCResult(self, testcaseid, testplanid, buildname, platformid, status, notes ):
         """
         Report execution result
         testcaseid: internal testlink id of the test case
@@ -402,6 +402,7 @@ class TestlinkAPIClient(object):
                 'testplanid' : testplanid,
                 'status': status,
                 'buildname': buildname,
+                'platformid': platformid,
                 'notes': str(notes)
                 }
         return self._callServer('reportTCResult', argsAPI)
